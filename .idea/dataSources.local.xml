@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="MySQL - confidant @localhost" uuid="0429478f-7dca-4361-b88c-2b896c2ec0ac">
+      <secret-storage>master_key</secret-storage>
+      <user-name>root</user-name>
+      <schema-pattern>confidant.*</schema-pattern>
+      <default-schemas>confidant.*</default-schemas>
+    </data-source>
+  </component>
+</project>
