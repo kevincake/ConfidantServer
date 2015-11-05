@@ -19,6 +19,7 @@ public class UserEntity {
     private float longitude;
     private float latitude;
     private String account;
+    private int userId;
 
     public void setId(Integer id) {
         this.id = id;
@@ -163,5 +164,15 @@ public class UserEntity {
 
     public void setAccount(String account) {
         this.account = account;
+    }
+
+    @Id
+    @Column(name = "userId")
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 }
