@@ -2,6 +2,7 @@ package com.springapp.mvc.util;
 
 import com.google.gson.Gson;
 import com.springapp.mvc.model.Base;
+import com.springapp.mvc.model.ErrMsg;
 import com.sun.deploy.net.HttpResponse;
 
 import javax.servlet.http.HttpServletResponse;
@@ -23,4 +24,11 @@ public class Util {
             e.printStackTrace();
         }
     }
+    public static void writeErrorMsg2Client(HttpServletResponse response,String errorMsg){
+        ErrMsg msg = new ErrMsg();
+        msg.setResult(0);
+        msg.setErrno(errorMsg);
+        Util.writeObj2Clicent(response, msg);
+    }
+
 }

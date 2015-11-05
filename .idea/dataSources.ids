@@ -7,6 +7,14 @@
     </database-info>
     <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
     <schema name="" catalog="confidant"/>
+    <table name="friend" schema="" catalog="confidant" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="userId" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="friendId" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="isBlack" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="isProtect" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
     <table name="user" schema="" catalog="confidant" type="TABLE">
       <column name="userName" sqlType="TEXT" precision="65535" scale="0" nullable="false" jdbcType="-1"/>
       <column name="password" sqlType="TEXT" precision="65535" scale="0" nullable="false" jdbcType="-1"/>
@@ -17,8 +25,9 @@
       <column name="sex" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="longitude" sqlType="FLOAT" precision="12" scale="0" nullable="false" jdbcType="7"/>
       <column name="latitude" sqlType="FLOAT" precision="12" scale="0" nullable="false" jdbcType="7"/>
-      <column name="id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <column name="account" sqlType="TEXT" precision="65535" scale="0" nullable="false" jdbcType="-1"/>
+      <column name="userId" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <primary-key name="PRIMARY" columns="userId"/>
     </table>
   </data-source>
 </component>

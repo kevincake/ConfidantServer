@@ -11,5 +11,12 @@
         <!--<property name="prefix" value="/WEB-INF/pages/"/>-->
         <!--<property name="suffix" value=".jsp"/>-->
     </bean>
-
+    <!-- spring的属性加载器，加载properties文件中的属性 -->
+    <bean id="stringProp"
+          class="com.springapp.mvc.util.PropertyUtil">
+        <property name="location">
+            <value>/WEB-INF/config/String.properties</value>
+        </property>
+        <property name="fileEncoding" value="utf-8" />
+    </bean>
 </beans>
