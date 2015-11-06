@@ -1,29 +1,25 @@
 package com.springapp.mvc.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
- * Created by glpublic on 2015/11/3.
+ * Created by glpublic on 2015/11/6.
  */
 @Entity
 @Table(name = "user", schema = "", catalog = "confidant")
-public class UserEntity {
+public class UserEntity implements Serializable{
     private String userName;
     private String password;
     private String birthday;
     private String habbit;
     private String headIcon;
     private String friends;
-    private long id;
     private int sex;
     private float longitude;
     private float latitude;
     private String account;
     private int userId;
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     @Basic
     @Column(name = "userName")
@@ -86,47 +82,6 @@ public class UserEntity {
     }
 
     @Basic
-    @Id
-    @Column(name = "id")
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        UserEntity that = (UserEntity) o;
-
-        if (id != that.id) return false;
-        if (userName != null ? !userName.equals(that.userName) : that.userName != null) return false;
-        if (password != null ? !password.equals(that.password) : that.password != null) return false;
-        if (birthday != null ? !birthday.equals(that.birthday) : that.birthday != null) return false;
-        if (habbit != null ? !habbit.equals(that.habbit) : that.habbit != null) return false;
-        if (headIcon != null ? !headIcon.equals(that.headIcon) : that.headIcon != null) return false;
-        if (friends != null ? !friends.equals(that.friends) : that.friends != null) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = userName != null ? userName.hashCode() : 0;
-        result = 31 * result + (password != null ? password.hashCode() : 0);
-        result = 31 * result + (birthday != null ? birthday.hashCode() : 0);
-        result = 31 * result + (habbit != null ? habbit.hashCode() : 0);
-        result = 31 * result + (headIcon != null ? headIcon.hashCode() : 0);
-        result = 31 * result + (friends != null ? friends.hashCode() : 0);
-        result = 31 * result + (int) (id ^ (id >>> 32));
-        return result;
-    }
-
-    @Basic
     @Column(name = "sex")
     public int getSex() {
         return sex;
@@ -174,5 +129,43 @@ public class UserEntity {
 
     public void setUserId(int userId) {
         this.userId = userId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        UserEntity that = (UserEntity) o;
+
+        if (sex != that.sex) return false;
+        if (Float.compare(that.longitude, longitude) != 0) return false;
+        if (Float.compare(that.latitude, latitude) != 0) return false;
+        if (userId != that.userId) return false;
+        if (userName != null ? !userName.equals(that.userName) : that.userName != null) return false;
+        if (password != null ? !password.equals(that.password) : that.password != null) return false;
+        if (birthday != null ? !birthday.equals(that.birthday) : that.birthday != null) return false;
+        if (habbit != null ? !habbit.equals(that.habbit) : that.habbit != null) return false;
+        if (headIcon != null ? !headIcon.equals(that.headIcon) : that.headIcon != null) return false;
+        if (friends != null ? !friends.equals(that.friends) : that.friends != null) return false;
+        if (account != null ? !account.equals(that.account) : that.account != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = userName != null ? userName.hashCode() : 0;
+        result = 31 * result + (password != null ? password.hashCode() : 0);
+        result = 31 * result + (birthday != null ? birthday.hashCode() : 0);
+        result = 31 * result + (habbit != null ? habbit.hashCode() : 0);
+        result = 31 * result + (headIcon != null ? headIcon.hashCode() : 0);
+        result = 31 * result + (friends != null ? friends.hashCode() : 0);
+        result = 31 * result + sex;
+        result = 31 * result + (longitude != +0.0f ? Float.floatToIntBits(longitude) : 0);
+        result = 31 * result + (latitude != +0.0f ? Float.floatToIntBits(latitude) : 0);
+        result = 31 * result + (account != null ? account.hashCode() : 0);
+        result = 31 * result + userId;
+        return result;
     }
 }

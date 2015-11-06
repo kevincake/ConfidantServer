@@ -11,6 +11,7 @@
         <property name="connection.username">root</property>
         <!--<property name="usen"-->
         <mapping class="com.springapp.mvc.entities.UserEntity"/>
+        <mapping class="com.springapp.mvc.entities.FriendEntity"/>
 
         <!--<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>-->
         <!-- DB schema will be updated if needed -->

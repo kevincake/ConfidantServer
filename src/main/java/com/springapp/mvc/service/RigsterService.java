@@ -2,14 +2,11 @@ package com.springapp.mvc.service;
 
 import com.springapp.mvc.dao.DBUtils;
 import com.springapp.mvc.entities.UserEntity;
-import com.springapp.mvc.model.User;
-import com.sun.org.apache.xml.internal.security.utils.Base64;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
-import java.io.*;
 import java.util.List;
 import java.util.regex.Pattern;
 

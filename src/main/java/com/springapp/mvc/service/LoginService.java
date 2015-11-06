@@ -2,6 +2,7 @@ package com.springapp.mvc.service;
 
 import com.springapp.mvc.dao.DBUtils;
 import com.springapp.mvc.entities.UserEntity;
+import com.springapp.mvc.util.Constants;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
@@ -19,9 +20,9 @@ public class LoginService {
         c.add(Restrictions.eq("account", account));//eq是等于，gt是大于，lt是小于,or是或
         c.add(Restrictions.eq("password",password));
         List<UserEntity> list = c.list();
-        if (list==null){
+        if (list==null||list.size()<=0){
             return null;
         }
-        return list.get(1);
+        return list.get(Constants.SqlListDefaultIndex);
     }
 }

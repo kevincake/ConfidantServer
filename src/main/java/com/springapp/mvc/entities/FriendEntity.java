@@ -1,13 +1,14 @@
 package com.springapp.mvc.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
- * Created by glpublic on 2015/11/5.
+ * Created by glpublic on 2015/11/6.
  */
 @Entity
 @Table(name = "friend", schema = "", catalog = "confidant")
-public class FriendEntity {
+public class FriendEntity implements Serializable {
     private int id;
     private Integer userId;
     private int friendId;
