@@ -2,11 +2,18 @@ package com.springapp.mvc.service;
 
 import com.springapp.mvc.dao.DBUtils;
 import com.springapp.mvc.entities.UserEntity;
+import com.springapp.mvc.util.PropertyUtil;
+import org.apache.commons.codec.binary.Base64;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
+import org.springframework.util.FileCopyUtils;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
+import java.io.*;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -38,7 +45,18 @@ public class RigsterService {
     public boolean isUserNameExist(String userName) {
         Session session = DBUtils.getSession();
         Criteria c = session.createCriteria(UserEntity.class);
-        c.add(Restrictions.eq("userName",userName));//eq是等于，gt是大于，lt是小于,or是或
+        c.add(Restrictions.eq("userName", userName));//eq是等于，gt是大于，lt是小于,or是或
+        List<UserEntity> list = c.list();
+        if (list != null && list.size() > 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isAccountExist(String account) {
+        Session session = DBUtils.getSession();
+        Criteria c = session.createCriteria(UserEntity.class);
+        c.add(Restrictions.eq("account", account));//eq是等于，gt是大于，lt是小于,or是或
         List<UserEntity> list = c.list();
         if (list != null && list.size() > 0) {
             return true;
@@ -47,18 +65,45 @@ public class RigsterService {
     }
 
     ;
-    public boolean saveUser(UserEntity user){
+
+    public boolean saveUser(UserEntity user) {
         Session session = DBUtils.getSession();
         Transaction transaction = session.beginTransaction();
         session.save(user);
         transaction.commit();
         return true;
     }
-    public boolean saveHeadIcon(String fileContent) {
-        return false;
+
+    public String saveHeadIcon(HttpServletRequest request) {
+        MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+        CommonsMultipartFile file = (CommonsMultipartFile) multipartRequest
+                .getFile("fileUpload");
+
+        String name = multipartRequest.getParameter("hello");
+        System.out.println("name: " + name);
+        // 获得文件名：
+        String realFileName = System.currentTimeMillis() + "";
+        System.out.println("获得文件名：" + realFileName);
+        // 获取路径
+        String ctxPath = request.getSession().getServletContext().getRealPath(
+                "/")
+                + "images/";
+        // 创建文件
+        File dirPath = new File(ctxPath);
+        if (!dirPath.exists()) {
+            dirPath.mkdir();
+        }
+        String finalPath = ctxPath + realFileName;
+        File uploadFile = new File(finalPath);
+        try {
+            FileCopyUtils.copy(file.getBytes(), uploadFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return finalPath;
     }
 
-    ;
+
 }
 // 将base64 转 字节数组
 //Base64 base = new Base64();

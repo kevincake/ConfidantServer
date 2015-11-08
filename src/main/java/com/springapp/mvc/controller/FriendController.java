@@ -91,6 +91,7 @@ public class FriendController {
         }
 //        service.blackFriend(Integer.parseInt(userId), Integer.parseInt(friendId));
     }
+
     
     //获取分页好友
 
