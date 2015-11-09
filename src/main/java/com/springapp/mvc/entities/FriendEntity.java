@@ -1,19 +1,19 @@
 package com.springapp.mvc.entities;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 /**
- * Created by glpublic on 2015/11/6.
+ * Created by glpublic on 2015/11/9.
  */
 @Entity
 @Table(name = "friend", schema = "", catalog = "confidant")
-public class FriendEntity implements Serializable {
+public class FriendEntity {
     private int id;
     private Integer userId;
     private int friendId;
     private int isBlack;
     private int isProtect;
+    private String lastlogintime;
 
     @Id
     @Column(name = "id")
@@ -65,6 +65,16 @@ public class FriendEntity implements Serializable {
         this.isProtect = isProtect;
     }
 
+    @Basic
+    @Column(name = "lastlogintime")
+    public String getLastlogintime() {
+        return lastlogintime;
+    }
+
+    public void setLastlogintime(String lastlogintime) {
+        this.lastlogintime = lastlogintime;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -77,6 +87,8 @@ public class FriendEntity implements Serializable {
         if (isBlack != that.isBlack) return false;
         if (isProtect != that.isProtect) return false;
         if (userId != null ? !userId.equals(that.userId) : that.userId != null) return false;
+        if (lastlogintime != null ? !lastlogintime.equals(that.lastlogintime) : that.lastlogintime != null)
+            return false;
 
         return true;
     }
@@ -88,6 +100,7 @@ public class FriendEntity implements Serializable {
         result = 31 * result + friendId;
         result = 31 * result + isBlack;
         result = 31 * result + isProtect;
+        result = 31 * result + (lastlogintime != null ? lastlogintime.hashCode() : 0);
         return result;
     }
 }

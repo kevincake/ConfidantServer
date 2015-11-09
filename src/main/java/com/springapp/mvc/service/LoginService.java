@@ -5,6 +5,7 @@ import com.springapp.mvc.entities.UserEntity;
 import com.springapp.mvc.util.Constants;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
 import java.util.List;
@@ -24,5 +25,13 @@ public class LoginService {
             return null;
         }
         return list.get(Constants.SqlListDefaultIndex);
+    }
+    //更新用户最后一次登录的时间
+    public UserEntity updateUser(UserEntity user){
+        Session session = DBUtils.getSession();
+        Transaction transaction = session.beginTransaction();
+        session.update(user);
+        transaction.commit();
+        return user;
     }
 }

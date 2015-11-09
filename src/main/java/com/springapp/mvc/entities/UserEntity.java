@@ -1,14 +1,13 @@
 package com.springapp.mvc.entities;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 /**
- * Created by glpublic on 2015/11/6.
+ * Created by glpublic on 2015/11/9.
  */
 @Entity
 @Table(name = "user", schema = "", catalog = "confidant")
-public class UserEntity implements Serializable{
+public class UserEntity {
     private String userName;
     private String password;
     private String birthday;
@@ -16,10 +15,11 @@ public class UserEntity implements Serializable{
     private String headIcon;
     private String friends;
     private int sex;
-    private float longitude;
+    private Float longitude;
     private float latitude;
     private String account;
     private int userId;
+    private String lastlogintime;
 
     @Basic
     @Column(name = "userName")
@@ -93,11 +93,11 @@ public class UserEntity implements Serializable{
 
     @Basic
     @Column(name = "longitude")
-    public float getLongitude() {
+    public Float getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(float longitude) {
+    public void setLongitude(Float longitude) {
         this.longitude = longitude;
     }
 
@@ -131,6 +131,16 @@ public class UserEntity implements Serializable{
         this.userId = userId;
     }
 
+    @Basic
+    @Column(name = "lastlogintime")
+    public String getLastlogintime() {
+        return lastlogintime;
+    }
+
+    public void setLastlogintime(String lastlogintime) {
+        this.lastlogintime = lastlogintime;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -139,7 +149,6 @@ public class UserEntity implements Serializable{
         UserEntity that = (UserEntity) o;
 
         if (sex != that.sex) return false;
-        if (Float.compare(that.longitude, longitude) != 0) return false;
         if (Float.compare(that.latitude, latitude) != 0) return false;
         if (userId != that.userId) return false;
         if (userName != null ? !userName.equals(that.userName) : that.userName != null) return false;
@@ -148,7 +157,10 @@ public class UserEntity implements Serializable{
         if (habbit != null ? !habbit.equals(that.habbit) : that.habbit != null) return false;
         if (headIcon != null ? !headIcon.equals(that.headIcon) : that.headIcon != null) return false;
         if (friends != null ? !friends.equals(that.friends) : that.friends != null) return false;
+        if (longitude != null ? !longitude.equals(that.longitude) : that.longitude != null) return false;
         if (account != null ? !account.equals(that.account) : that.account != null) return false;
+        if (lastlogintime != null ? !lastlogintime.equals(that.lastlogintime) : that.lastlogintime != null)
+            return false;
 
         return true;
     }
@@ -162,10 +174,11 @@ public class UserEntity implements Serializable{
         result = 31 * result + (headIcon != null ? headIcon.hashCode() : 0);
         result = 31 * result + (friends != null ? friends.hashCode() : 0);
         result = 31 * result + sex;
-        result = 31 * result + (longitude != +0.0f ? Float.floatToIntBits(longitude) : 0);
+        result = 31 * result + (longitude != null ? longitude.hashCode() : 0);
         result = 31 * result + (latitude != +0.0f ? Float.floatToIntBits(latitude) : 0);
         result = 31 * result + (account != null ? account.hashCode() : 0);
         result = 31 * result + userId;
+        result = 31 * result + (lastlogintime != null ? lastlogintime.hashCode() : 0);
         return result;
     }
 }

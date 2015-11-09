@@ -19,13 +19,13 @@
         </property>
         <property name="fileEncoding" value="utf-8"/>
     </bean>
-    <bean id="projectProp"
-          class="com.springapp.mvc.util.PropertyUtil">
-        <property name="location">
-            <value>/WEB-INF/config/Project.properties</value>
-        </property>
-        <property name="fileEncoding" value="utf-8"/>
-    </bean>
+    <!--<bean id="projectProp"-->
+          <!--class="com.springapp.mvc.util.PropertyUtil">-->
+        <!--<property name="location">-->
+            <!--<value>/WEB-INF/config/Project.properties</value>-->
+        <!--</property>-->
+        <!--<property name="fileEncoding" value="utf-8"/>-->
+    <!--</bean>-->
     <bean id="multipartResolver"
           class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
         <property name="defaultEncoding" value="utf-8" />

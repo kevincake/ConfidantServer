@@ -31,11 +31,13 @@ public class LoginController {
             return ;
         }
         UserEntity user = service.getUser(account,password);
+        user.setLastlogintime(System.currentTimeMillis()+"");
        if (user==null){
            Util.writeErrorMsg2Client(response, PropertyUtil.getProperty("loginerrorTips"));
            return ;
        };
         Gson gson = new Gson();
+        service.updateUser(user);
         response.getWriter().write(SuccessMsg.getSuccessFormat(gson.toJson(user)));
 
     }
