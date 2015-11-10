@@ -24,11 +24,27 @@ CREATE TABLE `user` (
   `birthday` text NOT NULL,
   `habbit` text NOT NULL,
   `headIcon` text NOT NULL,
-  `friends` text,
   `sex` int(11) NOT NULL,
-  `longitude` float NOT NULL,
+  `longitude` float DEFAULT NULL,
   `latitude` float NOT NULL,
   `account` text NOT NULL,
   `userId` int(11) NOT NULL AUTO_INCREMENT,
+  `lastlogintime` mediumtext,
+  `confidantDeId` int(11) DEFAULT '0',
+  `myConfidantId` int(11) NOT NULL,
+  `confidantStar` int(11) DEFAULT '0',
   PRIMARY KEY (`userId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=latin1;
+
+
+/*gift*/
+
+DROP TABLE IF EXISTS `gift`;
+CREATE TABLE `gift` (
+  `id` mediumtext NOT NULL,
+  `userId` int(11) NOT NULL AUTO_INCREMENT,
+  `count` int(11) DEFAULT '0',
+  `fromUserId` int(11) DEFAULT NULL,
+  `itemId` int(11) DEFAULT '0',
+  PRIMARY KEY (`userId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;

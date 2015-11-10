@@ -3,7 +3,7 @@ package com.springapp.mvc.entities;
 import javax.persistence.*;
 
 /**
- * Created by glpublic on 2015/11/9.
+ * Created by glpublic on 2015/11/10.
  */
 @Entity
 @Table(name = "friend", schema = "", catalog = "confidant")
@@ -14,6 +14,8 @@ public class FriendEntity {
     private int isBlack;
     private int isProtect;
     private String lastlogintime;
+    private Integer rechargeMoney;
+    private Integer costMoney;
 
     @Id
     @Column(name = "id")
@@ -75,6 +77,26 @@ public class FriendEntity {
         this.lastlogintime = lastlogintime;
     }
 
+    @Basic
+    @Column(name = "rechargeMoney")
+    public Integer getRechargeMoney() {
+        return rechargeMoney;
+    }
+
+    public void setRechargeMoney(Integer rechargeMoney) {
+        this.rechargeMoney = rechargeMoney;
+    }
+
+    @Basic
+    @Column(name = "costMoney")
+    public Integer getCostMoney() {
+        return costMoney;
+    }
+
+    public void setCostMoney(Integer costMoney) {
+        this.costMoney = costMoney;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -89,6 +111,9 @@ public class FriendEntity {
         if (userId != null ? !userId.equals(that.userId) : that.userId != null) return false;
         if (lastlogintime != null ? !lastlogintime.equals(that.lastlogintime) : that.lastlogintime != null)
             return false;
+        if (rechargeMoney != null ? !rechargeMoney.equals(that.rechargeMoney) : that.rechargeMoney != null)
+            return false;
+        if (costMoney != null ? !costMoney.equals(that.costMoney) : that.costMoney != null) return false;
 
         return true;
     }
@@ -101,6 +126,8 @@ public class FriendEntity {
         result = 31 * result + isBlack;
         result = 31 * result + isProtect;
         result = 31 * result + (lastlogintime != null ? lastlogintime.hashCode() : 0);
+        result = 31 * result + (rechargeMoney != null ? rechargeMoney.hashCode() : 0);
+        result = 31 * result + (costMoney != null ? costMoney.hashCode() : 0);
         return result;
     }
 }
