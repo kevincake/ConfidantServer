@@ -27,11 +27,20 @@ public class LoginService {
         return list.get(Constants.SqlListDefaultIndex);
     }
     //更新用户最后一次登录的时间
-    public UserEntity updateUser(UserEntity user){
+
+    public static boolean isLogin(int userId){
         Session session = DBUtils.getSession();
-        Transaction transaction = session.beginTransaction();
-        session.update(user);
-        transaction.commit();
-        return user;
+        Criteria c = session.createCriteria(UserEntity.class);
+        c.add(Restrictions.eq("userId", userId));//eq是等于，gt是大于，lt是小于,or是或
+        List<UserEntity> list = c.list();
+        if (list==null||list.size()<=0){
+            return false;
+        }
+        UserEntity user = list.get(Constants.SqlListDefaultIndex);
+        if (user==null){
+            return false;
+        }
+
+        return false;
     }
 }

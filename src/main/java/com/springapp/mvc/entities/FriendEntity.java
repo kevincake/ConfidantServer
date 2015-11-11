@@ -3,7 +3,7 @@ package com.springapp.mvc.entities;
 import javax.persistence.*;
 
 /**
- * Created by glpublic on 2015/11/10.
+ * Created by glpublic on 2015/11/11.
  */
 @Entity
 @Table(name = "friend", schema = "", catalog = "confidant")

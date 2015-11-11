@@ -59,7 +59,7 @@ public class RigsterController {
         user.setPassword(password);
         user.setBirthday(birthday);
         user.setHabbit(habbit);
-        user.setFriends(friends);
+//        user.setFriends(friends);
         user.setLongitude(longtitude);
         user.setLatitude(latitude);
         user.setSex(sex);

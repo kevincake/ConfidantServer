@@ -3,7 +3,7 @@ package com.springapp.mvc.entities;
 import javax.persistence.*;
 
 /**
- * Created by glpublic on 2015/11/10.
+ * Created by glpublic on 2015/11/11.
  */
 @Entity
 @Table(name = "user", schema = "", catalog = "confidant")
@@ -15,13 +15,14 @@ public class UserEntity {
     private String headIcon;
     private int sex;
     private Float longitude;
-    private float latitude;
+    private Float latitude;
     private String account;
     private int userId;
     private String lastlogintime;
     private Integer confidantDeId;
-    private int myConfidantId;
+    private Integer myConfidantId;
     private Integer confidantStar;
+    private Integer isLogin;
 
     @Basic
     @Column(name = "userName")
@@ -95,11 +96,11 @@ public class UserEntity {
 
     @Basic
     @Column(name = "latitude")
-    public float getLatitude() {
+    public Float getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(float latitude) {
+    public void setLatitude(Float latitude) {
         this.latitude = latitude;
     }
 
@@ -145,11 +146,11 @@ public class UserEntity {
 
     @Basic
     @Column(name = "myConfidantId")
-    public int getMyConfidantId() {
+    public Integer getMyConfidantId() {
         return myConfidantId;
     }
 
-    public void setMyConfidantId(int myConfidantId) {
+    public void setMyConfidantId(Integer myConfidantId) {
         this.myConfidantId = myConfidantId;
     }
 
@@ -163,6 +164,16 @@ public class UserEntity {
         this.confidantStar = confidantStar;
     }
 
+    @Basic
+    @Column(name = "isLogin")
+    public Integer getIsLogin() {
+        return isLogin;
+    }
+
+    public void setIsLogin(Integer isLogin) {
+        this.isLogin = isLogin;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -171,22 +182,24 @@ public class UserEntity {
         UserEntity that = (UserEntity) o;
 
         if (sex != that.sex) return false;
-        if (Float.compare(that.latitude, latitude) != 0) return false;
         if (userId != that.userId) return false;
-        if (myConfidantId != that.myConfidantId) return false;
         if (userName != null ? !userName.equals(that.userName) : that.userName != null) return false;
         if (password != null ? !password.equals(that.password) : that.password != null) return false;
         if (birthday != null ? !birthday.equals(that.birthday) : that.birthday != null) return false;
         if (habbit != null ? !habbit.equals(that.habbit) : that.habbit != null) return false;
         if (headIcon != null ? !headIcon.equals(that.headIcon) : that.headIcon != null) return false;
         if (longitude != null ? !longitude.equals(that.longitude) : that.longitude != null) return false;
+        if (latitude != null ? !latitude.equals(that.latitude) : that.latitude != null) return false;
         if (account != null ? !account.equals(that.account) : that.account != null) return false;
         if (lastlogintime != null ? !lastlogintime.equals(that.lastlogintime) : that.lastlogintime != null)
             return false;
         if (confidantDeId != null ? !confidantDeId.equals(that.confidantDeId) : that.confidantDeId != null)
             return false;
+        if (myConfidantId != null ? !myConfidantId.equals(that.myConfidantId) : that.myConfidantId != null)
+            return false;
         if (confidantStar != null ? !confidantStar.equals(that.confidantStar) : that.confidantStar != null)
             return false;
+        if (isLogin != null ? !isLogin.equals(that.isLogin) : that.isLogin != null) return false;
 
         return true;
     }
@@ -200,13 +213,14 @@ public class UserEntity {
         result = 31 * result + (headIcon != null ? headIcon.hashCode() : 0);
         result = 31 * result + sex;
         result = 31 * result + (longitude != null ? longitude.hashCode() : 0);
-        result = 31 * result + (latitude != +0.0f ? Float.floatToIntBits(latitude) : 0);
+        result = 31 * result + (latitude != null ? latitude.hashCode() : 0);
         result = 31 * result + (account != null ? account.hashCode() : 0);
         result = 31 * result + userId;
         result = 31 * result + (lastlogintime != null ? lastlogintime.hashCode() : 0);
         result = 31 * result + (confidantDeId != null ? confidantDeId.hashCode() : 0);
-        result = 31 * result + myConfidantId;
+        result = 31 * result + (myConfidantId != null ? myConfidantId.hashCode() : 0);
         result = 31 * result + (confidantStar != null ? confidantStar.hashCode() : 0);
+        result = 31 * result + (isLogin != null ? isLogin.hashCode() : 0);
         return result;
     }
 }

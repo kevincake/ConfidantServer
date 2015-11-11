@@ -48,3 +48,32 @@ CREATE TABLE `gift` (
   `itemId` int(11) DEFAULT '0',
   PRIMARY KEY (`userId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+DROP TABLE IF EXISTS `blog`;
+CREATE TABLE `blog` (
+  `userId` int(11) NOT NULL,
+  `msgText` text,
+  `photo1` int(11) DEFAULT NULL,
+  `time` longtext,
+  `photo2` text,
+  `photo3` text,
+  `photo4` text,
+  `photo5` text,
+  `photo6` text,
+  `heartType` int(11) DEFAULT NULL,
+  `mobileName` text,
+  `location` text,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+DROP TABLE IF EXISTS `chat`;
+CREATE TABLE `chat` (
+  `userId` int(11) NOT NULL,
+  `chatType` int(11) DEFAULT '0',
+  `voiceTime` int(11) DEFAULT '0',
+  `videoTime` int(11) DEFAULT '0',
+  `textTime` int(11) DEFAULT '0',
+  `token` text
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
