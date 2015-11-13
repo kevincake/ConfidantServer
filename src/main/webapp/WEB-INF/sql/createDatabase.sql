@@ -21,18 +21,19 @@ DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `userName` text NOT NULL,
   `password` text NOT NULL,
-  `birthday` text NOT NULL,
-  `habbit` text NOT NULL,
-  `headIcon` text NOT NULL,
+  `birthday` longtext,
+  `habbit` longtext,
+  `headIcon` longtext,
   `sex` int(11) NOT NULL,
   `longitude` float DEFAULT NULL,
-  `latitude` float NOT NULL,
+  `latitude` float DEFAULT NULL,
   `account` text NOT NULL,
   `userId` int(11) NOT NULL AUTO_INCREMENT,
   `lastlogintime` mediumtext,
   `confidantDeId` int(11) DEFAULT '0',
-  `myConfidantId` int(11) NOT NULL,
+  `myConfidantId` int(11) DEFAULT NULL,
   `confidantStar` int(11) DEFAULT '0',
+  `isLogin` int(11) DEFAULT NULL,
   PRIMARY KEY (`userId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=latin1;
 
@@ -74,6 +75,8 @@ CREATE TABLE `chat` (
   `voiceTime` int(11) DEFAULT '0',
   `videoTime` int(11) DEFAULT '0',
   `textTime` int(11) DEFAULT '0',
-  `token` text
+  `token` text,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
