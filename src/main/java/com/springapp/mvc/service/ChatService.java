@@ -32,5 +32,12 @@ public class ChatService {
         }
         return list.get(Constants.SqlListDefaultIndex);
     }
+    public static ChatEntity saveChat(ChatEntity chat){
+        Session session = DBUtils.getSession();
+        Transaction transaction = session.beginTransaction();
+        session.save(chat);
+        transaction.commit();
+        return chat;
+    }
 
 }

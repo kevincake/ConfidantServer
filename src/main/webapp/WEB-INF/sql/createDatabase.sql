@@ -1,4 +1,4 @@
-set password for 'root'@'localhost'=password('root');
+# set password for 'root'@'localhost'=password('root');
 drop database if exists confidant;
 CREATE DATABASE  confidant;
 USE confidant;
@@ -8,8 +8,8 @@ friend
 DROP TABLE IF EXISTS `friend`;
 CREATE TABLE `friend` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `userId` int(11) DEFAULT NULL,
-  `friendId` int(11) NOT NULL,
+  `account` text,
+  `friendAccount` text,
   `isBlack` int(11) NOT NULL,
   `isProtect` int(11) NOT NULL,
   PRIMARY KEY (`id`)
@@ -34,25 +34,26 @@ CREATE TABLE `user` (
   `myConfidantId` int(11) DEFAULT NULL,
   `confidantStar` int(11) DEFAULT '0',
   `isLogin` int(11) DEFAULT NULL,
+  `token` longtext,
   PRIMARY KEY (`userId`)
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=latin1;
 
 
 /*gift*/
 
 DROP TABLE IF EXISTS `gift`;
 CREATE TABLE `gift` (
-  `id` mediumtext NOT NULL,
-  `userId` int(11) NOT NULL AUTO_INCREMENT,
   `count` int(11) DEFAULT '0',
-  `fromUserId` int(11) DEFAULT NULL,
+  `toAccount` text,
   `itemId` int(11) DEFAULT '0',
-  PRIMARY KEY (`userId`)
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `account` text,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 DROP TABLE IF EXISTS `blog`;
 CREATE TABLE `blog` (
-  `userId` int(11) NOT NULL,
+  `account` text,
   `msgText` text,
   `photo1` int(11) DEFAULT NULL,
   `time` longtext,
@@ -70,7 +71,7 @@ CREATE TABLE `blog` (
 
 DROP TABLE IF EXISTS `chat`;
 CREATE TABLE `chat` (
-  `userId` int(11) NOT NULL,
+  `account` longtext,
   `chatType` int(11) DEFAULT '0',
   `voiceTime` int(11) DEFAULT '0',
   `videoTime` int(11) DEFAULT '0',
@@ -78,5 +79,5 @@ CREATE TABLE `chat` (
   `token` text,
   `id` int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 

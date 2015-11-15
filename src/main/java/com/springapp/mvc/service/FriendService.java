@@ -25,10 +25,10 @@ public class FriendService {
        return list;
     }
     //添加好友
-    public UserEntity addFriend(int userId,int  friendid){
+    public UserEntity addFriend(String account,String  friendAccount){
         FriendEntity friendentity = new FriendEntity();
-        friendentity.setUserId(userId);
-        friendentity.setFriendId(friendid);
+        friendentity.setAccount(account);
+        friendentity.setFriendAccount(friendAccount);
         friendentity.setIsBlack(0);
         friendentity.setIsProtect(0);
         Session session = DBUtils.getSession();
@@ -37,7 +37,7 @@ public class FriendService {
         transaction.commit();
 
          Criteria c = session.createCriteria(UserEntity.class);
-        c.add(Restrictions.eq("userId", friendid));//eq是等于，gt是大于，lt是小于,or是或
+        c.add(Restrictions.eq("userId", account));//eq是等于，gt是大于，lt是小于,or是或
         List<UserEntity> list = c.list();
         return list.get(0);
     }
@@ -75,7 +75,7 @@ public class FriendService {
         Session session = DBUtils.getSession();
         Criteria c = session.createCriteria(FriendEntity.class);
 //        session.get()
-        String hql = "UPDATE friend SET friend.isBlack=1 WHERE userId="+userId+" and friendId="+friendId;
+        String hql = "UPDATE friend SET friend.isBlack=1 WHERE account="+userId+" and friendAccount="+friendId;
         Query updateQuery =  session.createSQLQuery(hql);
         updateQuery.executeUpdate();
         return true;

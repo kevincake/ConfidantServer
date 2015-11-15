@@ -2,7 +2,7 @@
 import os
 import shutil
 
-FOLDER_PATH = "E:/ConfidantServer/src/main/java/com/springapp/mvc/entities/";
+FOLDER_PATH = "/Users/eavawu/Documents/ConfidantServer/ConfidantServer/src/main/java/com/springapp/mvc/entities/";
 
 
 def writeSeriliable2File(filePath, fileName):

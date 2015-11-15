@@ -17,6 +17,7 @@ public class Constants {
     public static String PAGENUM = "pageNum";
     public static int RESULT_TRUE = 1;
     public static int RESULT_FALSE = 0;
+    public static String ACCOUNT_KEY="account";
     //随机聊天
     public static int TEXT_CHATTYPE = 1;
     public static int VOICE_CHATTYPE = 2;

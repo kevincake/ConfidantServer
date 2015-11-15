@@ -5,6 +5,7 @@ import com.springapp.mvc.entities.FriendEntity;
 import com.springapp.mvc.entities.UserEntity;
 import com.springapp.mvc.model.SuccessMsg;
 import com.springapp.mvc.service.FriendService;
+import com.springapp.mvc.util.Constants;
 import com.springapp.mvc.util.PropertyUtil;
 import com.springapp.mvc.util.Util;
 import org.springframework.stereotype.Controller;
@@ -27,7 +28,7 @@ public class FriendController {
     @RequestMapping(value = "/getFriends",method = RequestMethod.GET)
     public void getFriends(ModelMap model, HttpServletRequest request, HttpServletResponse response) throws IOException {
         FriendService service = new FriendService();
-        String userId = request.getParameter("userId");
+        String userId = request.getParameter(Constants.ACCOUNT_KEY);
         if (userId==null){
             Util.writeErrorMsg2Client(response, PropertyUtil.getProperty("getFriendListErrorTips"));
             return;
@@ -40,8 +41,8 @@ public class FriendController {
     @RequestMapping(value = "/addFriend",method = RequestMethod.GET)
     public void addFriend(ModelMap model, HttpServletRequest request, HttpServletResponse response) throws IOException {
         FriendService service = new FriendService();
-        String userId = request.getParameter("userId");
-        String friendId = request.getParameter("friendId");
+        String userId = request.getParameter(Constants.ACCOUNT_KEY);
+        String friendId = request.getParameter("friendAccount");
         if (userId==null||friendId==null){
             Util.writeErrorMsg2Client(response, PropertyUtil.getProperty("addFriendErrorTips"));
             return;
@@ -50,7 +51,7 @@ public class FriendController {
             Util.writeErrorMsg2Client(response, PropertyUtil.getProperty("addFriendExistTips"));
             return;
         }
-       UserEntity user =  service.addFriend(Integer.parseInt(userId), Integer.parseInt(friendId));
+       UserEntity user =  service.addFriend(userId, friendId);
         response.getWriter().write(SuccessMsg.getSuccessFormat(new Gson().toJson(user)));
     }
     //删除好友

@@ -31,5 +31,16 @@ public class UserService {
         }
         return list.get(Constants.SqlListDefaultIndex);
     }
+    public static  UserEntity getUserByAccount(String account){
+
+        Session session = DBUtils.getSession();
+        Criteria c = session.createCriteria(UserEntity.class);
+        c.add(Restrictions.eq("account", account));//eq是等于，gt是大于，lt是小于,or是或
+        List<UserEntity> list = c.list();
+        if (list==null||list.size()<=0){
+            return null;
+        }
+        return list.get(Constants.SqlListDefaultIndex);
+    };
 
 }
