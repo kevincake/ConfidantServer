@@ -6,8 +6,11 @@ import com.springapp.mvc.model.Base;
 import com.springapp.mvc.model.ErrMsg;
 import com.sun.deploy.net.HttpResponse;
 import org.hibernate.Criteria;
+import org.springframework.util.FileCopyUtils;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
@@ -33,7 +36,25 @@ public class Util {
         msg.setErrno(errorMsg);
         Util.writeObj2Clicent(response, msg);
     }
+   public static String savePhoto(CommonsMultipartFile file,String path){
+       // 获得文件名：
+       String realFileName = System.currentTimeMillis() + "";
+       System.out.println("获得文件名：" + realFileName);
 
+       // 创建文件
+       File dirPath = new File(path);
+       if (!dirPath.exists()) {
+           dirPath.mkdir();
+       }
+       String finalPath = path + realFileName;
+       File uploadFile = new File(finalPath);
+       try {
+           FileCopyUtils.copy(file.getBytes(), uploadFile);
+       } catch (IOException e) {
+           e.printStackTrace();
+       }
+       return finalPath;
+   }
 
 
 }

@@ -18,7 +18,7 @@ public class LoginService {
     public UserEntity getUser(String account,String password) {
         Session session = DBUtils.getSession();
         Criteria c = session.createCriteria(UserEntity.class);
-        c.add(Restrictions.eq("account", account));//eq是等于，gt是大于，lt是小于,or是或
+        c.add(Restrictions.eq(Constants.ACCOUNT_KEY, account));//eq是等于，gt是大于，lt是小于,or是或
         c.add(Restrictions.eq("password",password));
         List<UserEntity> list = c.list();
         if (list==null||list.size()<=0){

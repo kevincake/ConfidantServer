@@ -4,14 +4,17 @@
         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory>
+        <property name="connection.username">root</property>
+        <property name="connection.password">root</property>
         <property name="connection.url">jdbc:mysql://localhost:3306/confidant</property>
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
-        <property name="connection.password">root</property>
-        <property name="connection.username">root</property>
         <!--<property name="usen"-->
         <mapping class="com.springapp.mvc.entities.UserEntity"/>
         <mapping class="com.springapp.mvc.entities.FriendEntity"/>
+        <mapping class="com.springapp.mvc.entities.GiftEntity"/>
+        <mapping class="com.springapp.mvc.entities.BlogEntity"/>
+        <mapping class="com.springapp.mvc.entities.ChatEntity"/>
 
         <!--<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>-->
         <!-- DB schema will be updated if needed -->

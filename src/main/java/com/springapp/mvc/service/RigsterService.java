@@ -3,6 +3,7 @@ package com.springapp.mvc.service;
 import com.springapp.mvc.dao.DBUtils;
 import com.springapp.mvc.entities.UserEntity;
 import com.springapp.mvc.util.PropertyUtil;
+import com.springapp.mvc.util.Util;
 import org.apache.commons.codec.binary.Base64;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -78,29 +79,31 @@ public class RigsterService {
         MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
         CommonsMultipartFile file = (CommonsMultipartFile) multipartRequest
                 .getFile("fileUpload");
-
-        String name = multipartRequest.getParameter("hello");
-        System.out.println("name: " + name);
-        // 获得文件名：
-        String realFileName = System.currentTimeMillis() + "";
-        System.out.println("获得文件名：" + realFileName);
-        // 获取路径
-        String ctxPath = request.getSession().getServletContext().getRealPath(
-                "/")
-                + "images/";
-        // 创建文件
-        File dirPath = new File(ctxPath);
-        if (!dirPath.exists()) {
-            dirPath.mkdir();
-        }
-        String finalPath = ctxPath + realFileName;
-        File uploadFile = new File(finalPath);
-        try {
-            FileCopyUtils.copy(file.getBytes(), uploadFile);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return finalPath;
+        String savePath = RigsterService.class.getResource("/").getPath();
+        System.out.print(savePath);
+//        Util.savePhoto(file,savePath);
+//        String name = multipartRequest.getParameter("hello");
+//        System.out.println("name: " + name);
+//        // 获得文件名：
+//        String realFileName = System.currentTimeMillis() + "";
+//        System.out.println("获得文件名：" + realFileName);
+//        // 获取路径
+//        String ctxPath = request.getSession().getServletContext().getRealPath(
+//                "/")
+//                + "images/";
+//        // 创建文件
+//        File dirPath = new File(ctxPath);
+//        if (!dirPath.exists()) {
+//            dirPath.mkdir();
+//        }
+//        String finalPath = ctxPath + realFileName;
+//        File uploadFile = new File(finalPath);
+//        try {
+//            FileCopyUtils.copy(file.getBytes(), uploadFile);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+        return savePath;
     }
 
 

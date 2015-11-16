@@ -1,13 +1,19 @@
 package com.springapp.mvc.controller;
 
 import com.google.gson.Gson;
+import com.springapp.mvc.entities.ChatEntity;
 import com.springapp.mvc.entities.UserEntity;
 import com.springapp.mvc.model.SuccessMsg;
+import com.springapp.mvc.netResult.TokenResult;
+import com.springapp.mvc.service.ChatService;
 import com.springapp.mvc.service.LoginService;
 import com.springapp.mvc.service.UserService;
 import com.springapp.mvc.util.Constants;
 import com.springapp.mvc.util.PropertyUtil;
 import com.springapp.mvc.util.Util;
+import io.rong.ApiHttpClient;
+import io.rong.models.FormatType;
+import io.rong.models.SdkHttpResult;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,34 +34,61 @@ public class LoginController {
         String account = request.getParameter("account");
         String password = request.getParameter("password");
         LoginService service = new LoginService();
-        if (account==null || password==null){
+        if (account == null || password == null) {
             Util.writeErrorMsg2Client(response, PropertyUtil.getProperty("loginerrorTips"));
-            return ;
+            return;
         }
-        UserEntity user = service.getUser(account,password);
-        if (user==null){
+        UserEntity user = service.getUser(account, password);
+        if (user == null) {
             Util.writeErrorMsg2Client(response, PropertyUtil.getProperty("loginUserNotExist"));
-            return ;
-        };
-        user.setLastlogintime(System.currentTimeMillis()+"");
+            return;
+        }
+        ;
+        user.setLastlogintime(System.currentTimeMillis() + "");
         user.setIsLogin(Constants.RESULT_TRUE);
 
-        Gson gson = new Gson();
-        UserService.updateUser(user);
-        response.getWriter().write(SuccessMsg.getSuccessFormat(gson.toJson(user)));
 
+
+
+//
+
+        //生成Token
+        SdkHttpResult result = null;
+
+        try {
+            result = ApiHttpClient.getToken(Constants.APPKEY, Constants.APPSECRET, user.getAccount(), user.getUserName(),
+                    "http://www.baidu.com", FormatType.json);
+        } catch (Exception e) {
+            System.out.print("gettoken error");
+            e.printStackTrace();
+        }
+
+        String resultResult = result.getResult();
+        Gson son = new Gson();
+        TokenResult tokenResult = son.fromJson(resultResult, TokenResult.class);
+        user.setToken(tokenResult.getToken());
+
+        if (tokenResult == null) {
+            Util.writeErrorMsg2Client(response, PropertyUtil.getProperty("getTokenError"));
+            return;
+        }
+        UserService.updateUser(user);
+
+        Gson gson = new Gson();
+        response.getWriter().write(SuccessMsg.getSuccessFormat(gson.toJson(user)));
     }
-    @RequestMapping(value = "loginOut",method = RequestMethod.GET)
-    public void  loginOut( HttpServletRequest request, HttpServletResponse response) throws IOException
-    {
+
+    @RequestMapping(value = "loginOut", method = RequestMethod.GET)
+    public void loginOut(HttpServletRequest request, HttpServletResponse response) throws IOException {
         LoginService service = new LoginService();
         String account = request.getParameter("account");
         String password = request.getParameter("password");
-        UserEntity user = service.getUser(account,password);
-        if (user==null){
+        UserEntity user = service.getUser(account, password);
+        if (user == null) {
             Util.writeErrorMsg2Client(response, PropertyUtil.getProperty("loginUserNotExist"));
-            return ;
-        };
+            return;
+        }
+        ;
         user.setIsLogin(Constants.RESULT_FALSE);
 
         Gson gson = new Gson();
