@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.net.URL;
 
 /**
@@ -16,25 +17,44 @@ import java.net.URL;
 @Controller
 @RequestMapping("/blog")
 public class BlogController {
-    @RequestMapping(value = "/deployBlog",method = RequestMethod.POST)
-    public void deployBlog( HttpServletRequest request, HttpServletResponse response){
+    @RequestMapping(value = "/deployBlog", method = RequestMethod.POST)
+    public void deployBlog(HttpServletRequest request, HttpServletResponse response) {
         String account = request.getParameter(Constants.ACCOUNT_KEY);
         String title = request.getParameter("title");
 
         BlogService service = new BlogService();
 
-        
+
     }
-    @RequestMapping(value = "/test",method = RequestMethod.GET)
-    public void test( HttpServletRequest request, HttpServletResponse response){
-//        String filePath = "";
 
-        URL url = BlogController.class.getResource("BlogController.class");
+    @RequestMapping(value = "/test", method = RequestMethod.GET)
+    public void test(HttpServletRequest request, HttpServletResponse response) {
+        //1.获取到Images的文件夹路径，绝对.
 
-        String className = url.getFile();
 
-       String filePath = className.substring(0,className.indexOf("WEB-INF") + "WEB-INF".length());
-       System.out.print(filePath);
+        //2.吧图片存到数据库，数据库存相对路径
+
+
+        //3.保存图片
+
+
+
+////        String filePath = "";
+////        request.get
+////        request.geContextPath();
+//        URL url = BlogController.class.getResource("BlogController.class");
+//////
+//        String className = url.getFile();
+//////
+//        String filePath = className.substring(0, className.indexOf("ROOT") + "ROOT".length());
+//        System.out.print(filePath+);
+//        try {
+//            response.getWriter().write(filePath);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+
 //        return filePath;
     }
+
 }
