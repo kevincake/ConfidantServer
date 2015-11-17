@@ -1,15 +1,16 @@
 package com.springapp.mvc.entities;
-import java.io.Serializable;
+
 import javax.persistence.*;
 
 /**
- * Created by eavawu on 11/15/15.
+ * Created by glpublic on 2015/11/17.
  */
 @Entity
 @Table(name = "blog", schema = "", catalog = "confidant")
-public class BlogEntity implements Serializable {    private String account;
+public class BlogEntity {
+    private String account;
     private String msgText;
-    private Integer photo1;
+    private String photo1;
     private String time;
     private String photo2;
     private String photo3;
@@ -20,6 +21,10 @@ public class BlogEntity implements Serializable {    private String account;
     private String mobileName;
     private String location;
     private int id;
+    private String title;
+    private String photo7;
+    private String photo8;
+    private String photo9;
 
     @Basic
     @Column(name = "account")
@@ -43,11 +48,11 @@ public class BlogEntity implements Serializable {    private String account;
 
     @Basic
     @Column(name = "photo1")
-    public Integer getPhoto1() {
+    public String getPhoto1() {
         return photo1;
     }
 
-    public void setPhoto1(Integer photo1) {
+    public void setPhoto1(String photo1) {
         this.photo1 = photo1;
     }
 
@@ -151,6 +156,46 @@ public class BlogEntity implements Serializable {    private String account;
         this.id = id;
     }
 
+    @Basic
+    @Column(name = "title")
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    @Basic
+    @Column(name = "photo7")
+    public String getPhoto7() {
+        return photo7;
+    }
+
+    public void setPhoto7(String photo7) {
+        this.photo7 = photo7;
+    }
+
+    @Basic
+    @Column(name = "photo8")
+    public String getPhoto8() {
+        return photo8;
+    }
+
+    public void setPhoto8(String photo8) {
+        this.photo8 = photo8;
+    }
+
+    @Basic
+    @Column(name = "photo9")
+    public String getPhoto9() {
+        return photo9;
+    }
+
+    public void setPhoto9(String photo9) {
+        this.photo9 = photo9;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -171,6 +216,10 @@ public class BlogEntity implements Serializable {    private String account;
         if (heartType != null ? !heartType.equals(that.heartType) : that.heartType != null) return false;
         if (mobileName != null ? !mobileName.equals(that.mobileName) : that.mobileName != null) return false;
         if (location != null ? !location.equals(that.location) : that.location != null) return false;
+        if (title != null ? !title.equals(that.title) : that.title != null) return false;
+        if (photo7 != null ? !photo7.equals(that.photo7) : that.photo7 != null) return false;
+        if (photo8 != null ? !photo8.equals(that.photo8) : that.photo8 != null) return false;
+        if (photo9 != null ? !photo9.equals(that.photo9) : that.photo9 != null) return false;
 
         return true;
     }
@@ -190,6 +239,10 @@ public class BlogEntity implements Serializable {    private String account;
         result = 31 * result + (mobileName != null ? mobileName.hashCode() : 0);
         result = 31 * result + (location != null ? location.hashCode() : 0);
         result = 31 * result + id;
+        result = 31 * result + (title != null ? title.hashCode() : 0);
+        result = 31 * result + (photo7 != null ? photo7.hashCode() : 0);
+        result = 31 * result + (photo8 != null ? photo8.hashCode() : 0);
+        result = 31 * result + (photo9 != null ? photo9.hashCode() : 0);
         return result;
     }
 }

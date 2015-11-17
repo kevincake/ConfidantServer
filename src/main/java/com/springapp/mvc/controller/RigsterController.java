@@ -69,7 +69,7 @@ public class RigsterController {
         user.setPassword(password);
         user.setBirthday(birthday);
         user.setHabbit(habbit);
-//        user.setFriends(friends);
+
         user.setLongitude(longtitude);
         user.setLatitude(latitude);
         user.setSex(sex);
@@ -109,14 +109,9 @@ public class RigsterController {
             Util.writeErrorMsg2Client(response, PropertyUtil.getProperty("passwordTips"));
             return;
         }
-        MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
-        CommonsMultipartFile file = (CommonsMultipartFile) multipartRequest
-                .getFile("fileUpload");
-
 
         //生成Token
         SdkHttpResult result = null;
-
         try {
             result = ApiHttpClient.getToken(Constants.APPKEY, Constants.APPSECRET, user.getAccount(), user.getUserName(),
                    "http://www.baidu.com", FormatType.json);
@@ -124,31 +119,14 @@ public class RigsterController {
             System.out.print("gettoken error");
             e.printStackTrace();
         }
-//        GsonUtil.fromJson()
-//        Gson son = new Gson();
-
-
         String resultResult = result.getResult();
         Gson son = new Gson();
         TokenResult tokenResult= son.fromJson(resultResult, TokenResult.class);
         user.setToken(tokenResult.getToken());
-
-//        JsonObject obj = new JSONObject(resultResult);
         if (tokenResult==null){
             Util.writeErrorMsg2Client(response, PropertyUtil.getProperty("getTokenError"));
             return;
-
         }
-
-
-        ChatEntity chat = new ChatEntity();
-//        chat.setUserId(user.getAccount());
-//        UserEntity userByAccount = UserService.getUserByAccount(user.getAccount());
-        chat.setAccount(user.getAccount());
-        chat.setToken(tokenResult.getToken());
-        ChatService.saveChat(chat);
-
-
         service.saveUser(user);
         try {
             Gson gson = new Gson();

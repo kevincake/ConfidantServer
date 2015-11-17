@@ -1,13 +1,14 @@
 package com.springapp.mvc.entities;
-import java.io.Serializable;
+
 import javax.persistence.*;
 
 /**
- * Created by eavawu on 11/15/15.
+ * Created by glpublic on 2015/11/17.
  */
 @Entity
 @Table(name = "user", schema = "", catalog = "confidant")
-public class UserEntity implements Serializable {    private String userName;
+public class UserEntity {
+    private String userName;
     private String password;
     private String birthday;
     private String habbit;
@@ -23,6 +24,7 @@ public class UserEntity implements Serializable {    private String userName;
     private Integer confidantStar;
     private Integer isLogin;
     private String token;
+    private Integer money;
 
     @Basic
     @Column(name = "userName")
@@ -184,6 +186,16 @@ public class UserEntity implements Serializable {    private String userName;
         this.token = token;
     }
 
+    @Basic
+    @Column(name = "money")
+    public Integer getMoney() {
+        return money;
+    }
+
+    public void setMoney(Integer money) {
+        this.money = money;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -211,6 +223,7 @@ public class UserEntity implements Serializable {    private String userName;
             return false;
         if (isLogin != null ? !isLogin.equals(that.isLogin) : that.isLogin != null) return false;
         if (token != null ? !token.equals(that.token) : that.token != null) return false;
+        if (money != null ? !money.equals(that.money) : that.money != null) return false;
 
         return true;
     }
@@ -233,6 +246,7 @@ public class UserEntity implements Serializable {    private String userName;
         result = 31 * result + (confidantStar != null ? confidantStar.hashCode() : 0);
         result = 31 * result + (isLogin != null ? isLogin.hashCode() : 0);
         result = 31 * result + (token != null ? token.hashCode() : 0);
+        result = 31 * result + (money != null ? money.hashCode() : 0);
         return result;
     }
 }

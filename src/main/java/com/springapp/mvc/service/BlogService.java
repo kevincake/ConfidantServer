@@ -3,11 +3,15 @@ package com.springapp.mvc.service;
 import com.springapp.mvc.dao.DBUtils;
 import com.springapp.mvc.entities.BlogEntity;
 import com.springapp.mvc.entities.UserEntity;
+import com.springapp.mvc.util.Util;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -40,6 +44,11 @@ public class BlogService {
         session.delete(blog);
         transaction.commit();
         return true;
+    }
+    public String saveBlogPhoto(CommonsMultipartFile file) {
+        String fileName = Util.savePhoto(file, Util.getBlogPath());
+        String urlPath = Util.getBlogUrlPath(fileName);
+        return urlPath;
     }
 
 }

@@ -79,71 +79,8 @@ public class RigsterService {
         MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
         CommonsMultipartFile file = (CommonsMultipartFile) multipartRequest
                 .getFile("fileUpload");
-        String savePath = RigsterService.class.getResource("/").getPath();
-        System.out.print(savePath);
-//        Util.savePhoto(file,savePath);
-//        String name = multipartRequest.getParameter("hello");
-//        System.out.println("name: " + name);
-//        // 获得文件名：
-//        String realFileName = System.currentTimeMillis() + "";
-//        System.out.println("获得文件名：" + realFileName);
-//        // 获取路径
-//        String ctxPath = request.getSession().getServletContext().getRealPath(
-//                "/")
-//                + "images/";
-//        // 创建文件
-//        File dirPath = new File(ctxPath);
-//        if (!dirPath.exists()) {
-//            dirPath.mkdir();
-//        }
-//        String finalPath = ctxPath + realFileName;
-//        File uploadFile = new File(finalPath);
-//        try {
-//            FileCopyUtils.copy(file.getBytes(), uploadFile);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-        return savePath;
+        String fileName = Util.savePhoto(file, Util.getHeadPath());
+        String urlPath = Util.getHeadUrlPath(fileName);
+        return urlPath;
     }
-
-
 }
-// 将base64 转 字节数组
-//Base64 base = new Base64();
-//        byte[] decode = base.decode(image);
-//        // 图片输出路径
-//        String imagePath = commodityFilePath + "/" + System.currentTimeMillis() + ".png";
-//        // 定义图片输入流
-//        InputStream fin = new ByteArrayInputStream(decode);
-//        // 定义图片输出流
-//        FileOutputStream fout= null;
-//        try {
-//        fout = new FileOutputStream(imagePath);
-//        } catch (FileNotFoundException e1) {
-//        e1.printStackTrace();
-//        }
-//        // 写文件
-//        byte[] b=new byte[1024];
-//        int length=0;
-//        try {
-//        while((length=fin.read(b))>0){
-//
-//        fout.write(b, 0, length);
-//        }
-//        // 关闭数据流
-//        fin.close();
-//        fout.close();
-//        } catch (IOException e1) {
-//        e1.printStackTrace();
-//        }
-//
-//
-//
-//        }catch(Exception e){
-//
-//        e.printStackTrace();
-//        }
-//        return true;
-//        };
-
-//}
