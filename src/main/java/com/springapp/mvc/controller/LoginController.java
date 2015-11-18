@@ -54,10 +54,10 @@ public class LoginController {
 
         //生成Token
         SdkHttpResult result = null;
-
+        String headIcon = "http://b168.photo.store.qq.com/psb?/V11j3jCT2FAMTw/GvxefL4njb6tL*q7mzkZIEwOcG06j6sHptBzKYE0cfM!/b/dA3*LmT*JQAA&bo=gAJVAwAAAAABB*Q!&rf=viewer_4";
         try {
             result = ApiHttpClient.getToken(Constants.APPKEY, Constants.APPSECRET, user.getAccount(), user.getUserName(),
-                    "http://www.baidu.com", FormatType.json);
+                    headIcon, FormatType.json);
         } catch (Exception e) {
             System.out.print("gettoken error");
             e.printStackTrace();

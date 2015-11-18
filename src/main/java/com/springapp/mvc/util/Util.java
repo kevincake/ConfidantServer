@@ -43,7 +43,7 @@ public class Util {
 
     public static String savePhoto(CommonsMultipartFile file, String path) {
         // 获得文件名：
-        String realFileName = System.currentTimeMillis() + "";
+        String realFileName = System.currentTimeMillis() + ".jpg";
         System.out.println("获得文件名：" + realFileName);
 
         // 创建文件
