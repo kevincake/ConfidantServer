@@ -5,6 +5,7 @@ import com.springapp.mvc.dao.DBUtils;
 import com.springapp.mvc.model.Base;
 import com.springapp.mvc.model.ErrMsg;
 import com.sun.deploy.net.HttpResponse;
+import org.apache.commons.io.FileUtils;
 import org.hibernate.Criteria;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
@@ -98,6 +99,27 @@ public class Util {
         String url = baseUrl + headIconFolder + fileName;
         return url;
     }
+
+    public static String getStringFromJsonFile(String fileName) {
+        String rootPath = getRootPath();
+        String jsonPath = rootPath + PropertyUtil.getProperty("jsonFolderPath") + fileName;
+        String contentString = "";
+        try {
+            contentString = FileUtils.readFileToString(new File(jsonPath), "UTF-8");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return contentString;
+    }
+
+    public static boolean isCorrect(String param) {
+        if (param == null || param.trim().equals("")) {
+            return false;
+        }
+        return true;
+    }
+
+    ;
 
 
 }
