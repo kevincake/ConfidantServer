@@ -9,6 +9,8 @@ import org.apache.commons.io.FileUtils;
 import org.hibernate.Criteria;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
+import sun.misc.BASE64Decoder;
+import sun.misc.BASE64Encoder;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
@@ -120,6 +122,63 @@ public class Util {
     }
 
     ;
+
+    public String decodeKey(String encryptString) {
+        BASE64Decoder encode = new BASE64Decoder();
+        return "";
+    }
+
+    ;
+
+    // ==================================================
+    // 加密body
+    public static String getEncryptBody(String body, String key) {
+
+        String encryptResult = YIHUOEncrypt(body, key);
+        String base64Result = new BASE64Encoder().encode(body.getBytes());
+        String numString = getNumString(base64Result);
+        String enCodebody = "";
+        try {
+            enCodebody = new String(numString.getBytes(), "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return enCodebody;
+    }
+
+    // 數字字符串1_2_3
+    public static String getNumString(String paramString) {
+        String numString = "";
+        String split = "_";
+        for (int i = 0; i < paramString.length(); i++) {
+            int num = (paramString.charAt(i));
+            if (i == paramString.length() - 1) {
+                numString = numString + num;
+            } else {
+                numString = numString + num + split;
+            }
+
+        }
+
+        return numString;
+    }
+
+    // 抑或
+    public static String YIHUOEncrypt(String body, String key) {
+        String str1 = body;
+        byte data[] = str1.getBytes();
+        for (int i = 0; i < data.length; i++) {
+            String str = key;
+            byte ch = data[i];
+            for (int j = 0; j < str.length(); j++) {
+                ch = (byte) (ch ^ str.charAt(j));
+            }
+            data[i] = ch;
+        }
+        str1 = new String(data);
+        return str1;
+    }
 
 
 }
