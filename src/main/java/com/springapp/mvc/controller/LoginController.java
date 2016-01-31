@@ -11,9 +11,7 @@ import com.springapp.mvc.service.UserService;
 import com.springapp.mvc.util.Constants;
 import com.springapp.mvc.util.PropertyUtil;
 import com.springapp.mvc.util.Util;
-import io.rong.ApiHttpClient;
-import io.rong.models.FormatType;
-import io.rong.models.SdkHttpResult;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -52,26 +50,26 @@ public class LoginController {
 
 //
 
-        //生成Token
-        SdkHttpResult result = null;
-        String headIcon = "http://b168.photo.store.qq.com/psb?/V11j3jCT2FAMTw/GvxefL4njb6tL*q7mzkZIEwOcG06j6sHptBzKYE0cfM!/b/dA3*LmT*JQAA&bo=gAJVAwAAAAABB*Q!&rf=viewer_4";
-        try {
-            result = ApiHttpClient.getToken(Constants.APPKEY, Constants.APPSECRET, user.getAccount(), user.getUserName(),
-                    headIcon, FormatType.json);
-        } catch (Exception e) {
-            System.out.print("gettoken error");
-            e.printStackTrace();
-        }
+//        //生成Token
+//        SdkHttpResult result = null;
+//        String headIcon = "http://b168.photo.store.qq.com/psb?/V11j3jCT2FAMTw/GvxefL4njb6tL*q7mzkZIEwOcG06j6sHptBzKYE0cfM!/b/dA3*LmT*JQAA&bo=gAJVAwAAAAABB*Q!&rf=viewer_4";
+//        try {
+//            result = ApiHttpClient.getToken(Constants.APPKEY, Constants.APPSECRET, user.getAccount(), user.getUserName(),
+//                    headIcon, FormatType.json);
+//        } catch (Exception e) {
+//            System.out.print("gettoken error");
+//            e.printStackTrace();
+//        }
 
-        String resultResult = result.getResult();
-        Gson son = new Gson();
-        TokenResult tokenResult = son.fromJson(resultResult, TokenResult.class);
-        user.setToken(tokenResult.getToken());
-
-        if (tokenResult == null) {
-            Util.writeErrorMsg2Client(response, PropertyUtil.getProperty("getTokenError"));
-            return;
-        }
+//        String resultResult = result.getResult();
+//        Gson son = new Gson();
+//        TokenResult tokenResult = son.fromJson(resultResult, TokenResult.class);
+//        user.setToken(tokenResult.getToken());
+//
+//        if (tokenResult == null) {
+//            Util.writeErrorMsg2Client(response, PropertyUtil.getProperty("getTokenError"));
+//            return;
+//        }
         UserService.updateUser(user);
 
         Gson gson = new Gson();

@@ -36,8 +36,9 @@ CREATE TABLE `user` (
   `isLogin` int(11) DEFAULT NULL,
   `token` longtext,
   `money` int(11) DEFAULT '0',
+  `signature` text,
   PRIMARY KEY (`userId`)
-) ENGINE=InnoDB AUTO_INCREMENT=322 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=323 DEFAULT CHARSET=latin1;
 
 
 /*gift*/

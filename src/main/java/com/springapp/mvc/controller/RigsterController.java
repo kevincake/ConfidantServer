@@ -109,12 +109,12 @@ public class RigsterController {
             Util.writeErrorMsg2Client(response, PropertyUtil.getProperty("passwordTips"));
             return;
         }
-        String headIcon = "http://b168.photo.store.qq.com/psb?/V11j3jCT2FAMTw/GvxefL4njb6tL*q7mzkZIEwOcG06j6sHptBzKYE0cfM!/b/dA3*LmT*JQAA&bo=gAJVAwAAAAABB*Q!&rf=viewer_4";
+//        String headIcon = "http://b168.photo.store.qq.com/psb?/V11j3jCT2FAMTw/GvxefL4njb6tL*q7mzkZIEwOcG06j6sHptBzKYE0cfM!/b/dA3*LmT*JQAA&bo=gAJVAwAAAAABB*Q!&rf=viewer_4";
         //生成Token
         SdkHttpResult result = null;
         try {
             result = ApiHttpClient.getToken(Constants.APPKEY, Constants.APPSECRET, user.getAccount(), user.getUserName(),
-                   headIcon, FormatType.json);
+                    headIconPath, FormatType.json);
         } catch (Exception e) {
             System.out.print("gettoken error");
             e.printStackTrace();

@@ -1,33 +1,19 @@
 package com.springapp.mvc.entities;
 
-import javax.persistence.*;
+import javax.persistence.Basic;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 /**
- * Created by glpublic on 2015/11/17.
+ * Created by eavawu on 11/22/15.
  */
 @Entity
-@Table(name = "user", schema = "", catalog = "confidant")
+@javax.persistence.Table(name = "user", schema = "", catalog = "confidant")
 public class UserEntity {
     private String userName;
-    private String password;
-    private String birthday;
-    private String habbit;
-    private String headIcon;
-    private int sex;
-    private Float longitude;
-    private Float latitude;
-    private String account;
-    private int userId;
-    private String lastlogintime;
-    private Integer confidantDeId;
-    private Integer myConfidantId;
-    private Integer confidantStar;
-    private Integer isLogin;
-    private String token;
-    private Integer money;
 
     @Basic
-    @Column(name = "userName")
+    @javax.persistence.Column(name = "userName")
     public String getUserName() {
         return userName;
     }
@@ -36,8 +22,10 @@ public class UserEntity {
         this.userName = userName;
     }
 
+    private String password;
+
     @Basic
-    @Column(name = "password")
+    @javax.persistence.Column(name = "password")
     public String getPassword() {
         return password;
     }
@@ -46,8 +34,10 @@ public class UserEntity {
         this.password = password;
     }
 
+    private String birthday;
+
     @Basic
-    @Column(name = "birthday")
+    @javax.persistence.Column(name = "birthday")
     public String getBirthday() {
         return birthday;
     }
@@ -56,8 +46,10 @@ public class UserEntity {
         this.birthday = birthday;
     }
 
+    private String habbit;
+
     @Basic
-    @Column(name = "habbit")
+    @javax.persistence.Column(name = "habbit")
     public String getHabbit() {
         return habbit;
     }
@@ -66,8 +58,10 @@ public class UserEntity {
         this.habbit = habbit;
     }
 
+    private String headIcon;
+
     @Basic
-    @Column(name = "headIcon")
+    @javax.persistence.Column(name = "headIcon")
     public String getHeadIcon() {
         return headIcon;
     }
@@ -76,8 +70,10 @@ public class UserEntity {
         this.headIcon = headIcon;
     }
 
+    private int sex;
+
     @Basic
-    @Column(name = "sex")
+    @javax.persistence.Column(name = "sex")
     public int getSex() {
         return sex;
     }
@@ -86,8 +82,10 @@ public class UserEntity {
         this.sex = sex;
     }
 
+    private Float longitude;
+
     @Basic
-    @Column(name = "longitude")
+    @javax.persistence.Column(name = "longitude")
     public Float getLongitude() {
         return longitude;
     }
@@ -96,8 +94,10 @@ public class UserEntity {
         this.longitude = longitude;
     }
 
+    private Float latitude;
+
     @Basic
-    @Column(name = "latitude")
+    @javax.persistence.Column(name = "latitude")
     public Float getLatitude() {
         return latitude;
     }
@@ -106,8 +106,10 @@ public class UserEntity {
         this.latitude = latitude;
     }
 
+    private String account;
+
     @Basic
-    @Column(name = "account")
+    @javax.persistence.Column(name = "account")
     public String getAccount() {
         return account;
     }
@@ -116,8 +118,10 @@ public class UserEntity {
         this.account = account;
     }
 
+    private int userId;
+
     @Id
-    @Column(name = "userId")
+    @javax.persistence.Column(name = "userId")
     public int getUserId() {
         return userId;
     }
@@ -126,8 +130,10 @@ public class UserEntity {
         this.userId = userId;
     }
 
+    private String lastlogintime;
+
     @Basic
-    @Column(name = "lastlogintime")
+    @javax.persistence.Column(name = "lastlogintime")
     public String getLastlogintime() {
         return lastlogintime;
     }
@@ -136,8 +142,10 @@ public class UserEntity {
         this.lastlogintime = lastlogintime;
     }
 
+    private Integer confidantDeId;
+
     @Basic
-    @Column(name = "confidantDeId")
+    @javax.persistence.Column(name = "confidantDeId")
     public Integer getConfidantDeId() {
         return confidantDeId;
     }
@@ -146,8 +154,10 @@ public class UserEntity {
         this.confidantDeId = confidantDeId;
     }
 
+    private Integer myConfidantId;
+
     @Basic
-    @Column(name = "myConfidantId")
+    @javax.persistence.Column(name = "myConfidantId")
     public Integer getMyConfidantId() {
         return myConfidantId;
     }
@@ -156,8 +166,10 @@ public class UserEntity {
         this.myConfidantId = myConfidantId;
     }
 
+    private Integer confidantStar;
+
     @Basic
-    @Column(name = "confidantStar")
+    @javax.persistence.Column(name = "confidantStar")
     public Integer getConfidantStar() {
         return confidantStar;
     }
@@ -166,8 +178,10 @@ public class UserEntity {
         this.confidantStar = confidantStar;
     }
 
+    private Integer isLogin;
+
     @Basic
-    @Column(name = "isLogin")
+    @javax.persistence.Column(name = "isLogin")
     public Integer getIsLogin() {
         return isLogin;
     }
@@ -176,8 +190,10 @@ public class UserEntity {
         this.isLogin = isLogin;
     }
 
+    private String token;
+
     @Basic
-    @Column(name = "token")
+    @javax.persistence.Column(name = "token")
     public String getToken() {
         return token;
     }
@@ -186,14 +202,28 @@ public class UserEntity {
         this.token = token;
     }
 
+    private Integer money;
+
     @Basic
-    @Column(name = "money")
+    @javax.persistence.Column(name = "money")
     public Integer getMoney() {
         return money;
     }
 
     public void setMoney(Integer money) {
         this.money = money;
+    }
+
+    private String signature;
+
+    @Basic
+    @javax.persistence.Column(name = "signature")
+    public String getSignature() {
+        return signature;
+    }
+
+    public void setSignature(String signature) {
+        this.signature = signature;
     }
 
     @Override
@@ -224,6 +254,7 @@ public class UserEntity {
         if (isLogin != null ? !isLogin.equals(that.isLogin) : that.isLogin != null) return false;
         if (token != null ? !token.equals(that.token) : that.token != null) return false;
         if (money != null ? !money.equals(that.money) : that.money != null) return false;
+        if (signature != null ? !signature.equals(that.signature) : that.signature != null) return false;
 
         return true;
     }
@@ -247,6 +278,7 @@ public class UserEntity {
         result = 31 * result + (isLogin != null ? isLogin.hashCode() : 0);
         result = 31 * result + (token != null ? token.hashCode() : 0);
         result = 31 * result + (money != null ? money.hashCode() : 0);
+        result = 31 * result + (signature != null ? signature.hashCode() : 0);
         return result;
     }
 }
